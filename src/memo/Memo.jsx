@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 
 const slow = (num) => {
   console.log("slow got called")
@@ -15,6 +15,12 @@ const ExampleMemo = () => {
       flag: thai ? '🇹🇭' : '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
   }
 
+  const [theme, setTheme] = useState({ backgroundColor: "red" })
+  useEffect(() => {
+    console.log("use effect got called")
+    setTheme({ backgroundColor: !thai ? "green" : "red" })
+  }, [langs])
+
   return (
     <>
       <div>expensive: {expensive}</div>
@@ -22,7 +28,7 @@ const ExampleMemo = () => {
       <button onClick={() => setCount(count + 1)}>Count UP</button>
       <button onClick={() => setCount(count - 1)}>Count DOWN</button>
 
-      <div>Language: {`${langs.flag} ${langs.lang}`}</div>
+      <div style={theme}>Language: {`${langs.flag} ${langs.lang}`}</div>
       <button onClick={() => setThai(!thai)}>Change Language</button>
     </>
   );
