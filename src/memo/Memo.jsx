@@ -10,10 +10,10 @@ const ExampleMemo = () => {
   const expensive = useMemo(() => slow(count), [count])
 
   const [thai, setThai] = useState(true)
-  const langs = {
+  const langs = useMemo(() => ({
       lang: thai ? "ไทย" : "English",
       flag: thai ? '🇹🇭' : '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
-  }
+  }), [thai])
 
   const [theme, setTheme] = useState({ backgroundColor: "red" })
   useEffect(() => {
