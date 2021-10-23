@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useMemo, useState} from "react";
 
 const slow = (num) => {
   console.log("slow got called")
@@ -7,7 +7,7 @@ const slow = (num) => {
 
 const ExampleMemo = () => {
   const [count, setCount] = useState(0)
-  const expensive = slow(count)
+  const expensive = useMemo(() => slow(count), [count])
 
   const [thai, setThai] = useState(true)
   const langs = {
